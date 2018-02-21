@@ -1,0 +1,45 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: SAM Local test
+Parameters:
+  SlackToken:
+    Type : String
+    Description : enter slack token (required)
+  SlackVerificationToken:
+    Type : String
+    Description : enter slack verification token (required)   
+  SlackChannelID:
+    Type : String
+    Default: ""
+    Description : enter slack channel ID (optional)
+Resources:
+  App:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      # file name
+      Handler: go-reacjilator
+      Runtime: go1.x
+      # build file directory 
+      CodeUri: build
+      Timeout: 300
+      MemorySize: 3008
+      Environment:
+        Variables:
+          SLACK_TOKEN: !Ref SlackToken
+          SLACK_VERIFICATION_TOKEN: !Ref SlackVerificationToken
+          SLACK_CHANNEL_ID: !Ref SlackChannelID
+      Policies:
+        # policy document
+        - Version: '2012-10-17' 
+          Statement:
+            - Effect: Allow
+              Action:
+                - translate:TranslateText
+                - comprehend:BatchDetectDominantLanguage
+              Resource: '*'
+      Events:
+        PostResource:
+          Type: Api
+          Properties:
+            Path: /slack
+            Method: post
