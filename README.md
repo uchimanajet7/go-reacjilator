@@ -77,6 +77,9 @@ $ go build
 
 *For deployment you need to be able to run the AWS CLI and prepare the AWS S3 resources necessary for AWS Lambda's operation in advance.*
 
+- Deploying Lambda-based Applications - AWS Lambda 
+	- https://docs.aws.amazon.com/lambda/latest/dg/deploying-lambda-apps.html
+
 ```sh
 $ GOARCH=amd64 GOOS=linux go build -v -o build/go-reacjilator
 $ aws cloudformation package \
