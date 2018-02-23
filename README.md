@@ -82,14 +82,17 @@ $ go build
 
 ```sh
 $ GOARCH=amd64 GOOS=linux go build -v -o build/go-reacjilator
+
 $ aws cloudformation package \
     --template-file template.yml \
     --s3-bucket <YOUR_BUCKET_NAME> \
     --s3-prefix go-reacjilator \
     --output-template-file .template.yml
+
 $ export SLACK_TOKEN=<YOUR_SLACK_TOKEN>
 $ export SLACK_VERIFICATION_TOKEN=<YOUR_ SLACK_VERIFICATION_TOKEN>
 $ export SLACK_CHANNEL_ID=<YOUR_SLACK_CHANNEL_ID>
+
 $ aws cloudformation deploy \
     --template-file .template.yml \
     --stack-name go-reacjilator \
@@ -116,6 +119,9 @@ $ aws cloudformation deploy \
 
 ## Author
 [uchimanajet7](https://github.com/uchimanajet7)
+
+- AWS Lambda Go, Amazon Comprehend, Amazon Translate で作るSlack 翻訳Bot #aws #lambda #slack #golang #serverless - uchimanajet7のメモ 
+	- http://uchimanajet7.hatenablog.com/entry/2018/02/23/093000
 
 ## Licence
 [MIT License](https://github.com/uchimanajet7/go-reacjilator/blob/master/LICENSE)
